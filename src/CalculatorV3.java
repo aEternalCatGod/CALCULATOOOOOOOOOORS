@@ -7,7 +7,7 @@ public class CalculatorV3 {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(
-                "+ for add \n- for subtract \n* for multiply \n/ for divide \n^ for power");
+                "+ for add \n- for subtract \n* for multiply \n/ for divide \n^ for power \n! for factorial");
 
         while (true) {
 
@@ -45,6 +45,7 @@ public class CalculatorV3 {
 
         }
     }
+
     private static BigInteger factorial(int n) {
         BigInteger result = BigInteger.ONE;
 
