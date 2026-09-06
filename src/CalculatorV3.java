@@ -1,8 +1,13 @@
+import java.awt.*;
 import java.util.Scanner;
 
 public class CalculatorV3 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println(
+                "+ for add \n- for subtract \n* for multiply \n/ for divide \n^ for power");
+
         while (true) {
 
             System.out.println("Type in a calculation...");
@@ -24,14 +29,16 @@ public class CalculatorV3 {
             double number1 = result.number1;
             double number2 = result.number2;
 
+            double power = Math.pow(number1, number2);
+
             switch (result.operation()) {
                 case Operation.ADD -> output = String.valueOf(number1 + number2);
                 case Operation.SUBTRACT -> output = String.valueOf(number1 - number2);
                 case Operation.MULTIPLY -> output = String.valueOf(number1 * number2);
                 case Operation.DIVIDE -> output = String.valueOf(number1 / number2);
+                case Operation.POWER -> output = String.valueOf(power);
             }
             System.out.println("=" + output);
-
 
         }
     }
@@ -39,9 +46,10 @@ public class CalculatorV3 {
     private static ParseResult parseCalculation(String input) {
         Operation selectedOperation;
 
+        double number1 = 0;
+        double number2 = 0;
 
-        double number1;
-        double number2;
+        double power = Math.pow(number1, number2);
 
         int operatorIndex;
 
@@ -61,9 +69,12 @@ public class CalculatorV3 {
             selectedOperation = Operation.DIVIDE;
             operatorIndex = input.indexOf("/");
 
+        } else  if (input.contains("^")) {
+            selectedOperation = Operation.POWER;
+            operatorIndex = input.indexOf("^");
         } else {
             System.out.println("ERROR: Not an Calculation");
-            return new ParseResult(0.0, 0.0, "ERROR: Not an Calculation", null);
+            return new ParseResult(0.0, 0.0, 0, "ERROR: Not an Calculation", null);
 
         }
 
@@ -74,25 +85,26 @@ public class CalculatorV3 {
             number1 = Double.parseDouble(calculationPart1);
         } catch (Exception e) {
             System.out.println("ERROR: Text ist not a number: " + calculationPart1);
-            return new ParseResult(0.0, 0.0,  "ERROR: Text ist not a number: " + calculationPart1, null);
+            return new ParseResult(0.0, 0.0, 0, "ERROR: Text ist not a number: " + calculationPart1, null);
         }
 
         try {
             number2 = Double.parseDouble(calculationPart2);
         } catch (Exception e) {
             System.out.println("ERROR: Text ist not a number: " + calculationPart2);
-            return new ParseResult(0.0, 0.0, "ERROR: Text ist not a number: " + calculationPart2, null);
+            return new ParseResult(0.0, 0.0, power, "ERROR: Text ist not a number: " + calculationPart2, null);
         }
 
-        return new ParseResult(number1, number2, null, selectedOperation);
+        return new ParseResult(number1, number2, power, null, selectedOperation);
     }
 
     enum Operation {
         ADD,
         SUBTRACT,
         MULTIPLY,
-        DIVIDE
-
+        DIVIDE,
+        POWER
     }
-    record ParseResult (double number1, double number2, String error, Operation operation) {}
+
+    record ParseResult (double number1, double number2, double power, String error, Operation operation) {}
 }
