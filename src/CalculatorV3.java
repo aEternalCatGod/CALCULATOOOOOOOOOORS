@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.math.BigInteger;
 import java.util.Scanner;
 
 public class CalculatorV3 {
@@ -37,21 +38,34 @@ public class CalculatorV3 {
                 case Operation.MULTIPLY -> output = String.valueOf(number1 * number2);
                 case Operation.DIVIDE -> output = String.valueOf(number1 / number2);
                 case Operation.POWER -> output = String.valueOf(power);
+                case Operation.FACULTY -> output = String.valueOf(factorial((int) number1));
+                default -> output = "ERROR";
             }
             System.out.println("=" + output);
 
         }
     }
+    private static BigInteger factorial(int n) {
+        BigInteger result = BigInteger.ONE;
+
+        for (int i = 2; i <= n; i++) {
+            result = result.multiply(BigInteger.valueOf(i));
+        }
+
+        return result;
+    }
+
 
     private static ParseResult parseCalculation(String input) {
-        Operation selectedOperation;
+        Operation selectedOperation = null;
 
         double number1 = 0;
         double number2 = 0;
 
         double power = Math.pow(number1, number2);
 
-        int operatorIndex;
+
+        int operatorIndex = 0;
 
         if (input.contains("+")) {
             selectedOperation = Operation.ADD;
@@ -69,9 +83,14 @@ public class CalculatorV3 {
             selectedOperation = Operation.DIVIDE;
             operatorIndex = input.indexOf("/");
 
-        } else  if (input.contains("^")) {
+        } else if (input.contains("^")) {
             selectedOperation = Operation.POWER;
             operatorIndex = input.indexOf("^");
+
+        } else if (input.contains("!")) {
+            selectedOperation = Operation.FACULTY;
+            operatorIndex = input.indexOf("!");
+
         } else {
             System.out.println("ERROR: Not an Calculation");
             return new ParseResult(0.0, 0.0, 0, "ERROR: Not an Calculation", null);
@@ -86,6 +105,10 @@ public class CalculatorV3 {
         } catch (Exception e) {
             System.out.println("ERROR: Text ist not a number: " + calculationPart1);
             return new ParseResult(0.0, 0.0, 0, "ERROR: Text ist not a number: " + calculationPart1, null);
+        }
+
+        if (selectedOperation == Operation.FACULTY) {
+            return new ParseResult(number1, 0.0, power, null, selectedOperation);
         }
 
         try {
@@ -103,8 +126,10 @@ public class CalculatorV3 {
         SUBTRACT,
         MULTIPLY,
         DIVIDE,
-        POWER
+        POWER,
+        FACULTY
     }
 
-    record ParseResult (double number1, double number2, double power, String error, Operation operation) {}
+    record ParseResult(double number1, double number2, double power, String error, Operation operation) {
+    }
 }

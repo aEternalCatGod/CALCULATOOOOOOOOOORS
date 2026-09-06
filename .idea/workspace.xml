@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1e478ca-fe44-4b78-b6cd-e440245aee54" name="Changes" comment="Added Power">
-      <change beforePath="$PROJECT_DIR$/src/Calculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalculatorV2.java" beforeDir="false" />
+    <list default="true" id="f1e478ca-fe44-4b78-b6cd-e440245aee54" name="Changes" comment="Deleted unnecessary things">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalculatorV3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculatorV3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +73,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Power" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Power" />
+    <MESSAGE value="Deleted unnecessary things" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted unnecessary things" />
   </component>
 </project>
