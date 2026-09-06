@@ -25,7 +25,7 @@ public class CalculatorV3 {
                 continue;
             }
 
-            String output = null;
+            String output ;
 
             double number1 = result.number1;
             double number2 = result.number2;
@@ -58,7 +58,7 @@ public class CalculatorV3 {
 
 
     private static ParseResult parseCalculation(String input) {
-        Operation selectedOperation = null;
+        Operation selectedOperation;
 
         double number1 = 0;
         double number2 = 0;
@@ -66,7 +66,7 @@ public class CalculatorV3 {
         double power = Math.pow(number1, number2);
 
 
-        int operatorIndex = 0;
+        int operatorIndex;
 
         if (input.contains("+")) {
             selectedOperation = Operation.ADD;
