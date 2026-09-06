@@ -7,7 +7,8 @@ public class CalculatorV3 {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(
-                "+ for add \n- for subtract \n* for multiply \n/ for divide \n^ for power \n! for factorial");
+                "+ for add \n- for subtract \n* for multiply \n/ for divide \n^ for power \n! for factorial"
+        );
 
         while (true) {
 
@@ -55,7 +56,6 @@ public class CalculatorV3 {
 
         return result;
     }
-
 
     private static ParseResult parseCalculation(String input) {
         Operation selectedOperation;
